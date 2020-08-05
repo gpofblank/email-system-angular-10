@@ -1,0 +1,15 @@
+<mat-card style="min-width: 600px;">
+  <mat-card-header>
+    <mat-card-title>Users List</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item *ngFor="let user of users">
+        <mat-icon mat-list-icon>person</mat-icon>
+        <div mat-line>{{ user.name }}</div>
+        <div mat-line>{{ user.age }}</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

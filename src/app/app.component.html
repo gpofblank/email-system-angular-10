@@ -1,0 +1,42 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer [opened]="true" #drawer class="example-sidenav" mode="side">
+    <div *ngIf="authService.currentUser" class="profile">
+      <h3>{{ authService.currentUser.username }}</h3>
+      <small>{{ authService.currentUser.email }}</small>
+    </div>
+    <mat-nav-list>
+      <ng-container *ngIf="!authService.currentUser">
+        <mat-list-item routerLink="/auth/login">
+          <a matLine class="padding-top">Login</a>
+        </mat-list-item>
+        <mat-list-item routerLink="/auth/register">
+          <a matLine class="padding-top">Register</a>
+        </mat-list-item>
+      </ng-container>
+
+      <ng-container *ngIf="authService.currentUser">
+        <mat-list-item routerLink="/emails">
+          <a matLine class="padding-top"
+            ><span
+              matBadgeColor="accent"
+              [matBadgeHidden]="newEmailsCount == 0"
+              matBadge="{{ newEmailsCount }}"
+              matBadgeSize="small"
+              >Emails</span
+            ></a
+          >
+        </mat-list-item>
+        <mat-list-item routerLink="/email/create">
+          <a matLine class="padding-top">Create email</a>
+        </mat-list-item>
+        <mat-list-item (click)="logout()">
+          <a matLine class="padding-top">Logout</a>
+        </mat-list-item>
+      </ng-container>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

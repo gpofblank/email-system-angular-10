@@ -1,0 +1,31 @@
+<mat-card class="email" id="{{ email.id }}">
+  <mat-card-header>
+    <mat-icon mat-card-avatar>email</mat-icon>
+    <mat-card-title-group>
+      <mat-card-title>{{ email.subject }}</mat-card-title>
+      <mat-card-subtitle>
+        <mat-chip-list>
+          <mat-chip *ngFor="let user of email.to">{{user}}</mat-chip>
+        </mat-chip-list>
+      </mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div appSelectable [selectableText]="email.from" style="padding: 10px;">
+      <p >{{ email.content }}</p>
+
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions [align]="'end'">
+    <button style="margin-right: auto;" mat-button (click)="onSeen()">Mark as Seen</button>
+    <button mat-button  routerLink="/email/{{email.id}}">Edit</button>
+    <button (click)="onRemove()" color="warn" mat-icon-button>
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button color="primary" mat-icon-button>
+      <mat-icon>reply</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

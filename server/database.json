@@ -1,0 +1,21 @@
+{
+  "users": {
+    "fb1406e1-b27b-4962-b037-68b9280c3721": {
+      "id": "fb1406e1-b27b-4962-b037-68b9280c3721",
+      "username": "pesho",
+      "email": "pesho@mail.bg",
+      "phoneNumber": "0234234123",
+      "password": "123",
+      "session": "ad4d8312-743a-4634-b4ab-1010dac17807"
+    },
+    "3cbeaa27-6351-47c7-bfc7-be59c6f71bdd": {
+      "id": "3cbeaa27-6351-47c7-bfc7-be59c6f71bdd",
+      "username": "gosho",
+      "email": "gosho@abv.bg",
+      "phoneNumber": "12345",
+      "password": "123",
+      "session": null
+    }
+  },
+  "emails": {}
+}

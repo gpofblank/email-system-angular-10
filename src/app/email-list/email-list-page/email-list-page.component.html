@@ -1,0 +1,8 @@
+<div class="email-list">
+  <app-email
+    (seen)="onEmailSeen($event)"
+    (remove)="onEmailRemove($event)"
+    [email]="email"
+    *ngFor="let email of emailService.getEmails() | async"
+  ></app-email>
+</div>

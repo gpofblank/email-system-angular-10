@@ -1,0 +1,55 @@
+<mat-card class="email-form-container">
+  <mat-card-header>
+    <mat-card-title>{{
+      isEditing ? "Edit email" : "Create new Email"
+    }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div
+      class="form-wrapper"
+      *ngIf="!loading; else loadingSpinner"
+      [formGroup]="emailForm"
+    >
+      <mat-form-field class="form-field">
+        <mat-label>Subject</mat-label>
+        <input formControlName="subject" type="text" matInput />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-chip-list #chipList>
+          <mat-chip
+            *ngFor="let email of to.value"
+            [removable]="true"
+            (removed)="onEmailRemoved(email)"
+          >
+            {{ email }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+
+          <input
+            placeholder="To..."
+            [formControl]="emailToInput"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="addEmailUser($event)"
+          />
+        </mat-chip-list>
+      </mat-form-field>
+      <mat-form-field [appearance]="'outline'" class="form-field">
+        <mat-label>Email Content</mat-label>
+        <textarea formControlName="content" matInput></textarea>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions [align]="'end'">
+    <button mat-button (click)="goBack()">Cancel</button>
+    <button mat-raised-button color="accent" (click)="submit()">
+      {{ isEditing ? "Save" : "Send" }}
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<ng-template #loadingSpinner>
+  <mat-spinner style="margin: 0 auto" ></mat-spinner>
+</ng-template>
